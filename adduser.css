@@ -1,0 +1,93 @@
+    .indexdiv {
+        height: 100px;
+        width: 100%;
+        background-color: powderblue;
+    }
+    .button {
+        color: black;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    .topdiv {
+        height: 70px;
+        width: 100%;
+        background-color: powderblue;
+    }
+    .leftdiv {
+        height: 500px;
+        width: 15%;
+        margin-top:1px;
+        background-color: powderblue;
+    }
+    .rightdiv{
+        height: 500px;
+        width: 1090px;
+        background-color: #e6f2ff;
+        position: absolute;  
+        top: 20px; 
+        margin:auto;
+        margin-top:120px;
+        margin-left:196px;
+    }
+    .pdiv {
+        border-bottom: 1px solid black;
+        padding: 2px;
+        text-decoration: none;
+        font-size: 20px;
+    }
+    .button {
+        color: black;
+        padding: 8px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 16px;
+        margin-right: 10px;
+    }
+    .credeninput{
+        margin-top: 16px;
+    }
+    .generalinput{
+        margin-left: 15px;
+        width:150px;
+        height:18px;
+    }
+    .radioinput{
+        margin-left: 120px;
+        width:18px;
+        height:18px;
+    }
+    #radiodiv{
+        height: 50px;
+        width: 200px;
+        margin-left:250px;
+        font-size: 16px;
+        background-color: #fff0b3;  
+    }
+    #checkdiv{
+        height: 50px;
+        width: 200px;
+        margin-left:250px;
+        font-size: 16px;
+        background-color: #fff0b3;  
+    }
+    .errordiv{
+        height: 50px;
+        width: 200px;
+        margin-left:650px;
+        background-color: #fff0b3;  
+    }
+    #popupcontent{
+       position: absolute;
+       visibility: hidden;
+       overflow: hidden;
+       border:5px solid #CCC;
+       background-color:#F9F9F9;
+       border:3px solid #ffe6b3;
+       padding:30px;
+    }
