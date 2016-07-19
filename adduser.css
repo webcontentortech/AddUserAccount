@@ -15,6 +15,7 @@
     .topdiv {
         height: 70px;
         width: 100%;
+        font-size: 20px;
         background-color: powderblue;
     }
     .leftdiv {
@@ -31,7 +32,17 @@
         top: 20px; 
         margin:auto;
         margin-top:120px;
-        margin-left:196px;
+        margin-left:194px;
+    }
+    .genrightdiv{
+        height: 300px;
+        width: 800px;
+        background-color: #e6f2ff;
+        position: relative;  
+        top: 20px; 
+        margin:auto;
+        margin-top:30px;
+        margin-left:10px;
     }
     .pdiv {
         border-bottom: 1px solid black;
@@ -82,12 +93,18 @@
         margin-left:650px;
         background-color: #fff0b3;  
     }
-    #popupcontent{
-       position: absolute;
-       visibility: hidden;
-       overflow: hidden;
-       border:5px solid #CCC;
-       background-color:#F9F9F9;
-       border:3px solid #ffe6b3;
-       padding:30px;
+    .popupcontent{
+        position: absolute;
+        margin-left: 300px;
+        margin-top: 100px;
+        height: 150px;
+        width: 25%;
+        border:5px solid #CCC;
+        background-color:#F9F9F9;
+        border:3px solid #ffe6b3;
+        padding:30px;
+    }
+    #statusbar{
+        margin-left: 10%px;
+        margin-top: 70px;
     }

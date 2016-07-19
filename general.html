@@ -2,38 +2,105 @@
 <html>
 <head>
     <title></title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <script type="text/javascript" src="adduser.js"></script>
     <link rel="stylesheet" type="text/css" href="adduser.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
 </head>
 <body>
-    <h2>General</h2>
-    <div style="text-align:right; border:1px solid black" class="topdiv">
-        <button class="button" id="prev">Prev</button>
-        <button class="button" id="next">Next</button>
-        <button class="button" id="ok">OK</button>
-        <button class="button">Cancel</button>
+    <h2>Add User</h2>
+    <div style="text-align:right; border:1px solid black" class="topdiv" id="topdiv">
+        <button class="button" id="prevgeneral" class="prevperm">Prev</button>
+        <button class="button" id="prevpermission" class="prevperm">Prev</button>
+        <button class="button" id="nextgeneral">Next</button>
+        <button class="button" id="okgeneral">OK</button>
+        <button class="button" id="cancelgeneral">Cancel</button>
     </div>
-    <div style="text-align:center; border:1px solid black" class="leftdiv">
+    <div style="text-align:center; border:1px solid black" class="leftdiv" id="leftdiv">
         <div class="pdiv">
-            <p>General</p>
+            <button class="button" id="general">General</button>
         </div>
         <div class="pdiv">
-            <p>Credential</p>
+            <button class="button" id="credgeneral">Credential</button>
         </div>
         <div class="pdiv">
-            <p>Permission</p>
+            <button class="button" id="permission">Permission</button>
         </div>  
     </div>
-    <div style="text-align:center; border:1px solid black" class="rightdiv"><br/>
-        <input style="padding: 8px 25px;" type="text" name="name" placeholder="Enter your name" id="name" class="generalinput" />
-        <div id="error1"></div><br/>
-        <input style="padding: 8px 25px;" type="text" name="fname" placeholder="Enter your father's name" id="fname" class="generalinput"/>
-        <div id="error2"></div><br/>
-        <input style="padding: 8px 25px;" type="text" name="dob" placeholder="Enter your dob" id="dob" class="generalinput"/>
-        <div id="error3"></div><br/>
-        <input style="padding: 8px 25px;" type="text" name="email" placeholder="email@gmail.com" id="email" class="generalinput" />
-        <div id="error4"></div>
+        <div style="text-align:center; border:1px solid black" class="rightdiv" id="rightgendiv"><br/>
+            <div class="genrightdiv" id="genrightdiv">
+                <div class="popupcontent">Do you want to proceed.
+                    <div id="statusbar">
+                        <button style="padding: 6px 20px;" class="okcancel">Ok</button>
+                        <button style="padding: 6px 20px; margin-Left: 30px;" class="hidecancel">Cancel</button>
+                    </div>
+                </div>
+                <input style="padding: 8px 25px;" type="text" name="name" placeholder="Enter your name" id="gname" class="generalinput" />
+                <div id="error1"></div><br/>
+                <input style="padding: 8px 25px;" type="text" name="fname" placeholder="Enter your father's name" id="fname" class="generalinput"/>
+                <div id="error2"></div><br/>
+                <input style="padding: 8px 25px;" type="date" name="dob" placeholder="Enter your dob" id="dob" class="generalinput"/>
+                <div id="error3"></div><br/>
+                <input style="padding: 8px 25px;" type="text" name="email" placeholder="email@gmail.com" id="email" class="generalinput" />
+                <div id="error4"></div>
+            </div>
+            <div style="text-align:center;" class="genrightdiv" id="creddiv"><br/>
+                <div class="popupcontent">Do you want to proceed.
+                    <div id="statusbar">
+                        <button style="padding: 6px 20px;" class="okcancel">Ok</button>
+                        <button style="padding: 6px 20px; margin-Left: 30px;" class="hidecancel">Cancel</button>
+                    </div>
+                </div>
+                <input style="padding: 8px 25px;" type="text" name="uname" placeholder="Username" id="userName" class="credeninput" />
+                <div id="errorc1"></div><br/>
+                <input style="padding: 8px 25px;" type="password" name="password" placeholder="password" id="password" class="credeninput"/>
+                <div id="errorc2" class="errordiv">*please enter password</div><br/>
+                <div id="errorc3" class="errordiv">password must contain at least 1 lowercase alphabetical character</div><br/>
+                <div id="errorc4" class="errordiv">password must contain at least 1 uppercase alphabetical character</div><br/>
+                <div id="errorc5" class="errordiv">password must contain at least 1 numeric character</div><br/>
+                <div id="errorc6" class="errordiv">password must contain at least 1 special character</div><br/>
+                <div id="errorc7" class="errordiv">password must be eight characters or longer</div><br/>
+                <div id="errorc8" class="errordiv">re-enter your password</div><br/>
+                <div id="errorc9" class="errordiv">repassword must be same as password</div><br/>
+                <input style="padding: 8px 25px;" type="password" name="password" placeholder="re password" id="repassword" class="credeninput"/>
+            </div>
+            <div style="text-align:left;" class="genrightdiv" id="permdiv"><br/>
+                <div class="popupcontent">Do you want to proceed.
+                    <div id="statusbar">
+                        <button style="padding: 6px 20px;" class="okcancel">Ok</button>
+                        <button style="padding: 6px 20px; margin-Left: 30px;" class="hidecancel">Cancel</button>
+                    </div>
+                </div>
+                <label style="margin-left: 100px;">Roles:</label><br/>
+                <input type="radio" name="role" value="Admin" class="radioinput" id="admin">Admin
+                <div id="radiodiv">*Please choose your Role: Admin or Employee</div><br/>
+                <input type="radio" name="role" value="Employee" class="radioinput" id="employee">Employee<br/><br/><br/>
+                <label style="margin-left: 100px;">Department:</label><br/><br/>
+                <input type="checkbox" name="dept" value="Health" class="radioinput" id="health">Health
+                <div id="checkdiv">*Please choose your department</div>
+                <input type="checkbox" name="dept" value="Garments" class="radioinput" id="garments">Garments
+                <input type="checkbox" name="dept" value="Food" class="radioinput" id="food">Food
+                <input type="checkbox" name="dept" value="Electronics" class="radioinput" id="electronics">Electronics
+            </div>
+            <div style="text-align:center;" class="genrightdiv" id="detaildiv">
+                <button class="button" id="addbutton">Add</button><br/><br/>
+                <div id="content">
+                    <span>Name:<label id="dname"></label></span><br/>
+                    <span>Father's name:<label id="dfname"></label></span><br/>
+                    <span>Dob:<label id="ddob"></label></span><br>
+                    <span>Email:<label id="demail"></label></span><br>
+                    <span>Username:<label id="dusername"></label></span><br>
+                    <span>Password:<label id="dpass"></label></span><br>
+                    <span>Re-password:<label id="drepass"></label></span><br>
+                    <span>Role:<label id="drole"></label></span><br>
+                    <span>Department:<label id="ddept"></label></span><br>
+                </div>      
+            </div>
+        </div>
     </div>
 </body>
 </html>
