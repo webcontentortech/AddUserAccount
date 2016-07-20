@@ -9,26 +9,25 @@
     <link rel="stylesheet" type="text/css" href="adduser.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-
 </head>
 <body>
     <h2>Add User</h2>
     <div style="text-align:right; border:1px solid black" class="topdiv" id="topdiv">
-        <button class="button" id="prevgeneral" class="prevperm">Prev</button>
-        <button class="button" id="prevpermission" class="prevperm">Prev</button>
-        <button class="button" id="nextgeneral">Next</button>
-        <button class="button" id="okgeneral">OK</button>
-        <button class="button" id="cancelgeneral">Cancel</button>
+        <button class="buttontop" id="prevgeneral" class="prevperm">Prev</button>
+        <button class="buttontop" id="prevpermission" class="prevperm">Prev</button>
+        <button class="buttontop" id="nextgeneral">Next</button>
+        <button class="buttontop" id="okgeneral">OK</button>
+        <button class="buttontop" id="cancelgeneral">Cancel</button>
     </div>
     <div style="text-align:center; border:1px solid black" class="leftdiv" id="leftdiv">
         <div class="pdiv">
-            <button class="button" id="general">General</button>
+            <button class="buttong" id="general">General</button>
         </div>
         <div class="pdiv">
-            <button class="button" id="credgeneral">Credential</button>
+            <button class="buttonc" id="credgeneral">Credential</button>
         </div>
         <div class="pdiv">
-            <button class="button" id="permission">Permission</button>
+            <button class="buttonp" id="permission">Permission</button>
         </div>  
     </div>
         <div style="text-align:center; border:1px solid black" class="rightdiv" id="rightgendiv"><br/>
@@ -58,14 +57,16 @@
                 <input style="padding: 8px 25px;" type="text" name="uname" placeholder="Username" id="userName" class="credeninput" />
                 <div id="errorc1"></div><br/>
                 <input style="padding: 8px 25px;" type="password" name="password" placeholder="password" id="password" class="credeninput"/>
-                <div id="errorc2" class="errordiv">*please enter password</div><br/>
-                <div id="errorc3" class="errordiv">password must contain at least 1 lowercase alphabetical character</div><br/>
-                <div id="errorc4" class="errordiv">password must contain at least 1 uppercase alphabetical character</div><br/>
-                <div id="errorc5" class="errordiv">password must contain at least 1 numeric character</div><br/>
-                <div id="errorc6" class="errordiv">password must contain at least 1 special character</div><br/>
-                <div id="errorc7" class="errordiv">password must be eight characters or longer</div><br/>
-                <div id="errorc8" class="errordiv">re-enter your password</div><br/>
-                <div id="errorc9" class="errordiv">repassword must be same as password</div><br/>
+                <div class="errordiv" id="mainerror">
+                    <div id="errorc2">*please enter password</div><br/>
+                    <div id="errorc3">password must contain at least 1 lowercase alphabetical character</div><br/>
+                    <div id="errorc4">password must contain at least 1 uppercase alphabetical character</div><br/>
+                    <div id="errorc5">password must contain at least 1 numeric character</div><br/>
+                    <div id="errorc6">password must contain at least 1 special character</div><br/>
+                    <div id="errorc7">password must be eight characters or longer</div><br/>
+                    <div id="errorc8">re-enter your password</div><br/>
+                    <div id="errorc9">repassword must be same as password</div><br/>
+                </div>
                 <input style="padding: 8px 25px;" type="password" name="password" placeholder="re password" id="repassword" class="credeninput"/>
             </div>
             <div style="text-align:left;" class="genrightdiv" id="permdiv"><br/>

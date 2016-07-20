@@ -3,14 +3,14 @@
         width: 100%;
         background-color: powderblue;
     }
-    .button {
-        color: black;
-        padding: 15px 32px;
+    .buttontop {
+        padding: 8px 25px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
         margin-top: 20px;
+        cursor: pointer;
     }
     .topdiv {
         height: 70px;
@@ -50,15 +50,35 @@
         text-decoration: none;
         font-size: 20px;
     }
-    .button {
-        color: black;
-        padding: 8px 25px;
+    .buttong {
+        padding: 15px 57px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
-        margin-top: 16px;
-        margin-right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .buttonc {
+        padding: 15px 47px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .buttonp {
+        padding: 15px 43px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .okcancel{
+        cursor: pointer;
+    }
+    .hidecancel{
+        cursor: pointer;
     }
     .credeninput{
         margin-top: 16px;
@@ -88,7 +108,7 @@
         background-color: #fff0b3;  
     }
     .errordiv{
-        height: 50px;
+        height: auto;
         width: 200px;
         margin-left:650px;
         background-color: #fff0b3;  

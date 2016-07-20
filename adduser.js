@@ -6,24 +6,20 @@ $(document).ready(function() {
     var name, fname, dob, email, username, password, admin, baseText = null, x, z, y, e, s, t, u, v, details, userObj, ids,divs;
     $('#creddiv').hide();
     $('#permdiv').hide();
-    $('#errorc2').hide();
-    $('#errorc3').hide();
-    $('#errorc4').hide();
-    $('#errorc5').hide();
-    $('#errorc6').hide();
-    $('#errorc7').hide();
-    $('#errorc8').hide();
-    $('#errorc9').hide();
     $('#radiodiv').hide();
     $('#checkdiv').hide();
     $('#detaildiv').hide();
+    $('#errorc8').hide();
+    $('#errorc9').hide();
+    $('#mainerror').hide();
     $('#prevpermission').hide();
     $('.popupcontent').hide();
-    $('#prevgeneral').prop('disabled', true);
-    $("#okgeneral").prop('disabled', true);
-    $("#permission").prop('disabled', true);
-    changeColorGen();
-    
+    $('#prevgeneral').prop('disabled', true).css("cursor", "default");
+    $("#okgeneral").prop('disabled', true).css("cursor", "default");
+    $("#permission").prop('disabled', true).css("cursor", "default");
+    $("#credgeneral").prop('disabled', true).css("cursor", "default");
+    document.getElementById('general').style.background = "#66cc66";
+
     function addUser(){
         $(location).attr('href','general.html');
     }
@@ -44,7 +40,7 @@ $(document).ready(function() {
     }
     
     function validateGeneral(){
-        var ck_name = /^[A-Za-z ]{3,20}$/;
+        var ck_name = /^[A-Za-z. ]{3,20}$/;
         var ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         var ck_dob = /^[0-9/]/;
         name = document.getElementById("gname").value;
@@ -66,10 +62,11 @@ $(document).ready(function() {
             saveDataGeneral();
             $('#genrightdiv').hide();
             $('#creddiv').show();
-            $('#prevgeneral').prop('disabled', false);
-            changeColorCred();
-            $('#cancelgeneral').prop('disabled', false);
-            $("#permission").prop('disabled', false);
+            $('#prevgeneral').prop('disabled', false).css("cursor", "pointer");
+            $('#cancelgeneral').prop('disabled', false).css("cursor", "pointer");
+            $("#credgeneral").prop('disabled', false).css("cursor", "pointer");
+            document.getElementById('general').style.background = "#f2f2f2";
+            document.getElementById('credgeneral').style.background = "#66cc66";
         }
     }
     
@@ -77,10 +74,12 @@ $(document).ready(function() {
         validateGeneral();
     });
     $('#credgeneral').click(function(){
-        $("#general").prop('disabled', false);
-        $("#okgeneral").prop('disabled', true);
-        $("#nextgeneral").prop('disabled', false);
-        document.getElementById("okgeneral").style.color = "black";
+        $(this).css("background","#66cc66");
+        document.getElementById('general').style.background = "#f2f2f2";
+        document.getElementById('permission').style.background = "#f2f2f2";
+        $("#general").prop('disabled', false).css("cursor", "pointer");
+        $("#okgeneral").prop('disabled', true).css("cursor", "default");
+        $("#nextgeneral").prop('disabled', false).css("cursor", "pointer");
         validateGeneral();
         $("#permdiv").hide();
     });
@@ -95,6 +94,7 @@ $(document).ready(function() {
     }
 
     function validateCredential(){
+        $('#mainerror').show();
         var u_name = /^[a-z0-9_-]{3,15}$/;
         var lpass = /(?=.*[a-z])/;
         var upass = /(?=.*[A-Z])/;
@@ -137,14 +137,13 @@ $(document).ready(function() {
             $('#prevgeneral').hide();
             $('#creddiv').hide();
             $('#permdiv').show();
-            $("#okgeneral").prop('disabled', false);
-            $("#general").prop('disabled', true);
-            $("#nextgeneral").prop('disabled', true);
-            document.getElementById("prevpermission").style.color = "blue";
+            $("#okgeneral").prop('disabled', false).css("cursor", "pointer");
+            $("#general").prop('disabled', true).css("cursor", "default");
+            $("#nextgeneral").prop('disabled', true).css("cursor", "default");
+            $("#permission").prop('disabled', false).css("cursor", "pointer");
+            document.getElementById('permission').style.background = "#66cc66";
+            document.getElementById('credgeneral').style.background = "#f2f2f2";
             $('#prevpermission').show();
-            document.getElementById("nextgeneral").style.color = "black";
-            document.getElementById("okgeneral").style.color = "blue";
-            document.getElementById("general").style.color = "black";    
         }
     }
     /*
@@ -170,12 +169,11 @@ $(document).ready(function() {
         $('#creddiv').hide();
         $('#permdiv').hide();
         $('#genrightdiv').show();
-        changeColorPrevGen();
-        $("#nextgeneral").prop('disabled', false);
-        $("#prevgeneral").prop('disabled', true);
-        document.getElementById("nextgeneral").style.color = "blue";
-        $("#okgeneral").prop('disabled', true);
-        document.getElementById("okgeneral").style.color = "black";
+        document.getElementById('credgeneral').style.background = "#f2f2f2";
+        document.getElementById('general').style.background = "#66cc66";
+        $("#nextgeneral").prop('disabled', false).css("cursor", "pointer");
+        $("#prevgeneral").prop('disabled', true).css("cursor", "default");
+        $("#okgeneral").prop('disabled', true).css("cursor", "default");
     });
 
     $('#nextgeneral').click(function(){
@@ -184,15 +182,15 @@ $(document).ready(function() {
     });
 
     $('#general').click(function(){
+        document.getElementById('general').style.background = "#66cc66";
+        document.getElementById('credgeneral').style.background = "#f2f2f2";
         $('#permdiv').hide();
-        changeColorPrevGen();
-        $("#prevgeneral").prop('disabled', true);
+        $("#prevgeneral").prop('disabled', true).css("cursor", "default");
         $('#creddiv').hide();
         $('#genrightdiv').show();
-        $("#permission").prop('disabled', true);
-        $("#okgeneral").prop('disabled', true);
-        $("#nextgeneral").prop('disabled', false);
-        document.getElementById("okgeneral").style.color = "black";
+        $("#permission").prop('disabled', true).css("cursor", "default");
+        $("#okgeneral").prop('disabled', true).css("cursor", "default");
+        $("#nextgeneral").prop('disabled', false).css("cursor", "pointer");
     });
 
     $('#permission').click(function(){
@@ -200,11 +198,6 @@ $(document).ready(function() {
         $('#creddiv').show();
         validateCredential();
     });
-
-    function changeColorPrevGen(){
-        document.getElementById("prevgeneral").style.color = "black";
-        document.getElementById("general").style.color = "black";    
-    }
 
     function saveDataPermission(){
         x = document.getElementById("admin").value;
@@ -263,17 +256,16 @@ $(document).ready(function() {
         $('#creddiv').show();
         $('#prevpermission').hide();
         $('#prevgeneral').show();
-        $('#nextgeneral').prop('disabled', false);
-        document.getElementById("nextgeneral").style.color = "blue";
+        $('#nextgeneral').prop('disabled', false).css("cursor", "pointer");
     });
     
     $('.hidecancel').click(function(){
         $('.popupcontent').hide();
-        $('#okpermission').prop('disabled', false);
-        $('#prevpermission').prop('disabled', false);
-        $('#nextcredential').prop('disabled', false);
-        $('#prevcredential').prop('disabled', false);
-        $('#nextgeneral').prop('disabled', false);
+        $('#okpermission').prop('disabled', false).css("cursor", "pointer");
+        $('#prevpermission').prop('disabled', false).css("cursor", "pointer");
+        $('#nextcredential').prop('disabled', false).css("cursor", "pointer");
+        $('#prevcredential').prop('disabled', false).css("cursor", "pointer");
+        $('#nextgeneral').prop('disabled', false).css("cursor", "pointer");
     });
 
     $('.okcancel').click(function(){
@@ -292,23 +284,9 @@ $(document).ready(function() {
         } else {
             $('.popupcontent').show();
         }
-        $('#okgeneral').prop('disabled', true);
-        $('#nextgeneral').prop('disabled', true);
+        $('#okgeneral').prop('disabled', true).css("cursor", "default");
+        $('#nextgeneral').prop('disabled', true).css("cursor", "default");
     });
-
-    function changeColorGen(){
-        document.getElementById("nextgeneral").style.color = "blue";
-        document.getElementById("cancelgeneral").style.color = "blue";
-        document.getElementById("credgeneral").style.color = "blue";
-    } 
-
-    function changeColorCred() {
-        document.getElementById("prevgeneral").style.color = "blue";
-        document.getElementById("nextgeneral").style.color = "blue";
-        document.getElementById("cancelgeneral").style.color = "blue";
-        document.getElementById("general").style.color = "blue";    
-        document.getElementById("permission").style.color = "blue";    
-    }
 
     function showDetail(){
         $('.topdiv').text("User successfully created!")
@@ -331,4 +309,4 @@ $(document).ready(function() {
         $('#ddept').text(obj.perm.dept);
     }
     console.log(obj);       
-})
+});
