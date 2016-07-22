@@ -3,7 +3,7 @@ var obj = {name:"", fname:"", dob:"", email:"", cred:{uname:"", pass:"", repass:
 
 $(document).ready(function() {
     // body...
-    var name, fname, dob, email, username, password, admin, baseText = null, x, z, y, e, s, t, u, v, details, userObj, ids,divs;
+    var name, fname, dob, email, username, password, admin, baseText = null, x, z, y, e, s, t, u, v, details, userObj, ids,divs, geninput;
     $('#creddiv').hide();
     $('#permdiv').hide();
     $('#radiodiv').hide();
@@ -19,6 +19,15 @@ $(document).ready(function() {
     $("#permission").prop('disabled', true).css("cursor", "default");
     $("#credgeneral").prop('disabled', true).css("cursor", "default");
     document.getElementById('general').style.background = "#66cc66";
+    document.getElementById('credgeneral').style.background = "#4E4E4E";
+    document.getElementById('permission').style.background = "#4E4E4E";
+
+    $("#dob").datepicker({
+        yearRange: "2016:2020",
+        minDate: '0',
+        changeMonth: true,
+        changeYear: true,
+    });
 
     function addUser(){
         $(location).attr('href','general.html');
@@ -70,16 +79,28 @@ $(document).ready(function() {
         }
     }
     
-    $('#nextgeneral').click(function(){
-        validateGeneral();
-    });
+    function generalRevalidation(){
+        if (geninput == "" && fname == "" && dob == "" && email == "") {
+            //$("#permission").prop('disabled', false).css("cursor", "pointer");
+            $("#credgeneral").prop('disabled', false).css("cursor", "pointer");
+            document.getElementById('credgeneral').style.background = "#66cc66";
+        } else {
+            //$("#permission").prop('disabled', true).css("cursor", "default");
+            document.getElementById('credgeneral').style.background = "#4E4E4E";
+            $("#credgeneral").prop('disabled', true).css("cursor", "default");
+            document.getElementById('general').style.background = "#66cc66";
+        }
+    }
+    
     $('#credgeneral').click(function(){
-        $(this).css("background","#66cc66");
         document.getElementById('general').style.background = "#f2f2f2";
-        document.getElementById('permission').style.background = "#f2f2f2";
+        document.getElementById('permission').style.background = "#4E4E4E";
+        generalRevalidation();
+        $("#prevgeneral").prop('disabled', false).css("cursor", "pointer");
         $("#general").prop('disabled', false).css("cursor", "pointer");
         $("#okgeneral").prop('disabled', true).css("cursor", "default");
         $("#nextgeneral").prop('disabled', false).css("cursor", "pointer");
+        $("#prevpermission").prop('disabled', false).css("cursor", "pointer");
         validateGeneral();
         $("#permdiv").hide();
     });
@@ -94,7 +115,7 @@ $(document).ready(function() {
     }
 
     function validateCredential(){
-        $('#mainerror').show();
+        //$('#mainerror').show();
         var u_name = /^[a-z0-9_-]{3,15}$/;
         var lpass = /(?=.*[a-z])/;
         var upass = /(?=.*[A-Z])/;
@@ -109,9 +130,9 @@ $(document).ready(function() {
             $("#errorc1").show();
         }else if(password == ""){
             $("#errorc1").hide();
-            $("#errorc2").show();
+            $('#mainerror').show();
         }else if(!lpass.test(password)){
-            $("#errorc2").hide();
+            $("#mainerror").hide();
             $("#errorc3").show();
         }else if(!upass.test(password)){
             $("#errorc2").hide();
@@ -133,39 +154,48 @@ $(document).ready(function() {
             $("#errorc8").hide();
             $("#errorc9").show();
         } else {
+            $('#mainerror').hide();
             saveDataCredential();
             $('#prevgeneral').hide();
             $('#creddiv').hide();
             $('#permdiv').show();
             $("#okgeneral").prop('disabled', false).css("cursor", "pointer");
-            $("#general").prop('disabled', true).css("cursor", "default");
             $("#nextgeneral").prop('disabled', true).css("cursor", "default");
+            $("#prevpermission").prop('disabled', false).css("cursor", "pointer");
             $("#permission").prop('disabled', false).css("cursor", "pointer");
+            $("#general").prop('disabled', false).css("cursor", "pointer");
             document.getElementById('permission').style.background = "#66cc66";
             document.getElementById('credgeneral').style.background = "#f2f2f2";
             $('#prevpermission').show();
         }
     }
-    /*
-    function getIDs(){
-        divs = document.getElementsByTagName('div');
-        for (var i = 0; i < divs.length; i++) {        
-            ids = divs[i].id;
-            alert(ids);
-        }
-        if (ids == permdiv) {
-            $('#permdiv').hide();
-            $('#creddiv').show();
+
+    function credentialRevalidation(){
+        if (uname == "" && password == "" && repassword == "") {
+            $("#permission").prop('disabled', false).css("cursor", "pointer");
+            $("#general").prop('disabled', false).css("cursor", "pointer");
         } else {
-            $('#creddiv').hide();
-            $('#permdiv').hide();
-            $('#genrightdiv').show();
+            $("#permission").prop('disabled', true).css("cursor", "default");
+            document.getElementById('permission').style.background = "#4E4E4E";
+            //document.getElementById('credgeneral').style.background = "#4E4E4E";
+            //$("#general").prop('disabled', true).css("cursor", "default");
         }
-        console.log(ids);
-    }*/
+    }
+
+    $('#permission').click(function(){
+        $('#prevgeneral').show();
+        $('#prevpermission').hide();
+        $("#prevpermission").prop('disabled', false).css("cursor", "pointer");
+        document.getElementById('general').style.background = "#f2f2f2";
+        $('#permdiv').hide();
+        $('#creddiv').show();
+        $('#genrightdiv').hide();
+        validateGeneral();
+        validateCredential();
+        credentialRevalidation();
+    });
 
     $('#prevgeneral').click(function(){
-        //getIDs();
         $('#creddiv').hide();
         $('#permdiv').hide();
         $('#genrightdiv').show();
@@ -174,29 +204,19 @@ $(document).ready(function() {
         $("#nextgeneral").prop('disabled', false).css("cursor", "pointer");
         $("#prevgeneral").prop('disabled', true).css("cursor", "default");
         $("#okgeneral").prop('disabled', true).css("cursor", "default");
-    });
-
-    $('#nextgeneral').click(function(){
-        $("#errorc1").hide();
-        validateCredential();
     });
 
     $('#general').click(function(){
+        document.getElementById('permission').style.background = "#4E4E4E";
         document.getElementById('general').style.background = "#66cc66";
         document.getElementById('credgeneral').style.background = "#f2f2f2";
         $('#permdiv').hide();
         $("#prevgeneral").prop('disabled', true).css("cursor", "default");
         $('#creddiv').hide();
         $('#genrightdiv').show();
-        $("#permission").prop('disabled', true).css("cursor", "default");
         $("#okgeneral").prop('disabled', true).css("cursor", "default");
         $("#nextgeneral").prop('disabled', false).css("cursor", "pointer");
-    });
-
-    $('#permission').click(function(){
-        $('#permdiv').hide();
-        $('#creddiv').show();
-        validateCredential();
+        $("#prevpermission").prop('disabled', true).css("cursor", "default");
     });
 
     function saveDataPermission(){
@@ -243,8 +263,6 @@ $(document).ready(function() {
         if (result == false) {
             $("#checkdiv").show();    
         }
-        console.log(admin);
-        console.log(department);
     }
 
     $('#okgeneral').click(function(){
@@ -257,6 +275,10 @@ $(document).ready(function() {
         $('#prevpermission').hide();
         $('#prevgeneral').show();
         $('#nextgeneral').prop('disabled', false).css("cursor", "pointer");
+        document.getElementById("permission").style.background = "#f2f2f2";
+        document.getElementById("credgeneral").style.background = "#66cc66";
+        $('#general').prop('disabled', false).css("cursor", "pointer");
+        $('#permission').prop('disabled', false).css("cursor", "pointer");
     });
     
     $('.hidecancel').click(function(){
@@ -273,7 +295,7 @@ $(document).ready(function() {
     });
 
     $('#cancelgeneral').click(function(){
-        var geninput = document.getElementById("gname").value;
+        geninput = document.getElementById("gname").value;
         fname = document.getElementById("fname").value;
         dob = document.getElementById("dob").value;
         email = document.getElementById("email").value;
@@ -289,8 +311,7 @@ $(document).ready(function() {
     });
 
     function showDetail(){
-        $('.topdiv').text("User successfully created!")
-        document.getElementById("addbutton").style.color = "blue";
+        $('.topdiv').text("User successfully created!");
         document.getElementById("topdiv").style.background = "#99ffcc";
         document.getElementById("leftdiv").style.background = "#99ffcc";
         document.getElementById("topdiv").style.textAlign = "center";
@@ -308,5 +329,22 @@ $(document).ready(function() {
         $('#drole').text(obj.perm.role);
         $('#ddept').text(obj.perm.dept);
     }
-    console.log(obj);       
+
+    function buttonNextHandler(){
+        if (document.getElementById('nextgeneral').name == 'generalnext') {
+            validateGeneral();
+            document.getElementById('nextgeneral').name='credentialnext';
+        } else if (document.getElementById('nextgeneral').name == 'credentialnext') {
+            $("#errorc1").hide();
+            validateCredential();
+            document.getElementById('nextgeneral').name='generalnext';
+        } else {
+            document.getElementById('nextgeneral').name='credentialnext';
+        }
+    }
+
+    $('#nextgeneral').click(function(){
+        buttonNextHandler();
+    });
+
 });
