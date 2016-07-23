@@ -3,7 +3,8 @@ var obj = {name:"", fname:"", dob:"", email:"", cred:{uname:"", pass:"", repass:
 
 $(document).ready(function() {
     // body...
-    var name, fname, dob, email, username, password, admin, baseText = null, x, z, y, e, s, t, u, v, details, userObj, ids,divs, geninput;
+    var name, fname, dob, email, username, password, admin, baseText = null, x, z, y, e, s, t, u, v, details, userObj, ids,divs, geninput, retvalue = 1;
+    var isValidateGeneral = true, isValidateCredential;
     $('#creddiv').hide();
     $('#permdiv').hide();
     $('#radiodiv').hide();
@@ -48,7 +49,8 @@ $(document).ready(function() {
         obj.email = e;
     }
     
-    function validateGeneral(){
+    var validateGeneral = function(){
+        $('#permdiv').hide();
         var ck_name = /^[A-Za-z. ]{3,20}$/;
         var ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         var ck_dob = /^[0-9/]/;
@@ -76,33 +78,54 @@ $(document).ready(function() {
             $("#credgeneral").prop('disabled', false).css("cursor", "pointer");
             document.getElementById('general').style.background = "#f2f2f2";
             document.getElementById('credgeneral').style.background = "#66cc66";
+            isValidateGeneral = false;
+            isValidateCredential = true;
+            return true;
         }
     }
     
-    function generalRevalidation(){
-        if (geninput == "" && fname == "" && dob == "" && email == "") {
-            //$("#permission").prop('disabled', false).css("cursor", "pointer");
+    var validateGeneralForCredentialButton = function(){
+        $("#credgeneral").prop('disabled', true).css("cursor", "default");
+        document.getElementById('credgeneral').style.background = "#4E4E4E";
+        var ck_name = /^[A-Za-z. ]{3,20}$/;
+        var ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        var ck_dob = /^[0-9/]/;
+        name = document.getElementById("gname").value;
+        fname = document.getElementById("fname").value;
+        dob = document.getElementById("dob").value;
+        email = document.getElementById("email").value;
+        if(!ck_name.test(name)) {
+            $("#error1").text("*Please enter a name");
+        }else if(!ck_name.test(fname)){
+            $("#error1").hide();
+            $("#error2").text("*Please enter a father name");
+        }else if(!ck_dob.test(dob)) {
+            $("#error2").hide();
+            $("#error3").text("*Please enter a dob");
+        }else if(!ck_email.test(email)) {
+            $("#error3").hide();
+            $("#error4").text("*Please enter a email");
+        }else{
+            saveDataGeneral();
+            $('#genrightdiv').hide();
+            $('#creddiv').show();
+            $('#prevgeneral').prop('disabled', false).css("cursor", "pointer");
+            $('#cancelgeneral').prop('disabled', false).css("cursor", "pointer");
             $("#credgeneral").prop('disabled', false).css("cursor", "pointer");
+            $("#general").prop('disabled', false).css("cursor", "pointer");
+            $("#okgeneral").prop('disabled', true).css("cursor", "default");
+            $("#nextgeneral").prop('disabled', false).css("cursor", "pointer");
+            $("#prevpermission").prop('disabled', false).css("cursor", "pointer");
+            $("#permdiv").hide();
+            document.getElementById('general').style.background = "#f2f2f2";
+            document.getElementById('permission').style.background = "#f2f2f2";
             document.getElementById('credgeneral').style.background = "#66cc66";
-        } else {
-            //$("#permission").prop('disabled', true).css("cursor", "default");
-            document.getElementById('credgeneral').style.background = "#4E4E4E";
-            $("#credgeneral").prop('disabled', true).css("cursor", "default");
-            document.getElementById('general').style.background = "#66cc66";
+            return true;
         }
     }
     
     $('#credgeneral').click(function(){
-        document.getElementById('general').style.background = "#f2f2f2";
-        document.getElementById('permission').style.background = "#4E4E4E";
-        generalRevalidation();
-        $("#prevgeneral").prop('disabled', false).css("cursor", "pointer");
-        $("#general").prop('disabled', false).css("cursor", "pointer");
-        $("#okgeneral").prop('disabled', true).css("cursor", "default");
-        $("#nextgeneral").prop('disabled', false).css("cursor", "pointer");
-        $("#prevpermission").prop('disabled', false).css("cursor", "pointer");
-        validateGeneral();
-        $("#permdiv").hide();
+        validateGeneralForCredentialButton();
     });
 
     function saveDataCredential(){
@@ -114,8 +137,8 @@ $(document).ready(function() {
         obj.cred.repass = z;
     }
 
-    function validateCredential(){
-        //$('#mainerror').show();
+    var validateCredential = function(){
+        $('#permdiv').hide();
         var u_name = /^[a-z0-9_-]{3,15}$/;
         var lpass = /(?=.*[a-z])/;
         var upass = /(?=.*[A-Z])/;
@@ -141,10 +164,10 @@ $(document).ready(function() {
         }else if(!npass.test(password)){
             $("#errorc4").hide();
             $("#errorc5").show();
-        }else if (!spass.test(password)) {
+        }else if (!spass.test(password)){
             $("#errorc5").hide();
             $("#errorc6").show();
-        }else if (!ltpass.test(password)) {
+        }else if (!ltpass.test(password)){
             $("#errorc6").hide();
             $("#errorc7").show();
         }else if (repassword == "") {
@@ -167,32 +190,97 @@ $(document).ready(function() {
             document.getElementById('permission').style.background = "#66cc66";
             document.getElementById('credgeneral').style.background = "#f2f2f2";
             $('#prevpermission').show();
+            isValidateCredential = false;
+            isValidateGeneral = true;
+            return true
         }
     }
 
-    function credentialRevalidation(){
-        if (uname == "" && password == "" && repassword == "") {
+    var validateCredentialForPermissionButton = function(){
+        $("#permission").prop('disabled', true).css("cursor", "default");
+        document.getElementById('permission').style.background = "#4E4E4E";
+        $('#permdiv').hide();
+        var u_name = /^[a-z0-9_-]{3,15}$/;
+        var lpass = /(?=.*[a-z])/;
+        var upass = /(?=.*[A-Z])/;
+        var npass = /(?=.*[0-9])/;
+        var spass = /(?=.*[!@#\$%\^&\*])/;
+        var ltpass = /(?=.{8,})/;
+        uname = document.getElementById("userName").value;
+        password = document.getElementById("password").value;
+        repassword = document.getElementById("repassword").value;
+        if (!u_name.test(uname)) {
+            $("#errorc1").text("*Please enter a username");
+            $("#errorc1").show();
+        }else if(password == ""){
+            $("#errorc1").hide();
+            $('#mainerror').show();
+        }else if(!lpass.test(password)){
+            $("#mainerror").hide();
+            $("#errorc3").show();
+        }else if(!upass.test(password)){
+            $("#errorc2").hide();
+            $("#errorc3").hide();
+            $("#errorc4").show();
+        }else if(!npass.test(password)){
+            $("#errorc4").hide();
+            $("#errorc5").show();
+        }else if (!spass.test(password)){
+            $("#errorc5").hide();
+            $("#errorc6").show();
+        }else if (!ltpass.test(password)){
+            $("#errorc6").hide();
+            $("#errorc7").show();
+        }else if (repassword == "") {
+            $("#errorc7").hide();
+            $("#errorc8").show();
+        } else if(password !== repassword){
+            $("#errorc8").hide();
+            $("#errorc9").show();
+        } else {
+            $('#mainerror').hide();
+            saveDataCredential();
+            $('#prevgeneral').hide();
+            $('#creddiv').hide();
+            $('#permdiv').show();
+            $('#genrightdiv').hide();
+            $("#okgeneral").prop('disabled', false).css("cursor", "pointer");
+            $("#nextgeneral").prop('disabled', true).css("cursor", "default");
+            $("#prevpermission").prop('disabled', false).css("cursor", "pointer");
             $("#permission").prop('disabled', false).css("cursor", "pointer");
             $("#general").prop('disabled', false).css("cursor", "pointer");
+            document.getElementById('permission').style.background = "#66cc66";
+            document.getElementById('credgeneral').style.background = "#f2f2f2";
+            document.getElementById('general').style.background = "#f2f2f2";
+            $('#prevpermission').show();
+            return true;
+        }
+    }
+
+    function forpermission(){
+        if (validateGeneralForCredentialButton() == true && validateCredentialForPermissionButton() == true) {
+            $('#creddiv').hide();
+            $('#permdiv').show();
+            $('#genrightdiv').hide();
+            $("#okgeneral").prop('disabled', false).css("cursor", "pointer");
+            $("#nextgeneral").prop('disabled', true).css("cursor", "default");
+            $("#prevpermission").prop('disabled', false).css("cursor", "pointer");
+            $("#permission").prop('disabled', false).css("cursor", "pointer");
+            $("#general").prop('disabled', false).css("cursor", "pointer");
+            document.getElementById('permission').style.background = "#66cc66";
+            document.getElementById('credgeneral').style.background = "#f2f2f2";
+            document.getElementById('general').style.background = "#f2f2f2";
+
         } else {
             $("#permission").prop('disabled', true).css("cursor", "default");
             document.getElementById('permission').style.background = "#4E4E4E";
-            //document.getElementById('credgeneral').style.background = "#4E4E4E";
-            //$("#general").prop('disabled', true).css("cursor", "default");
         }
     }
 
     $('#permission').click(function(){
         $('#prevgeneral').show();
         $('#prevpermission').hide();
-        $("#prevpermission").prop('disabled', false).css("cursor", "pointer");
-        document.getElementById('general').style.background = "#f2f2f2";
-        $('#permdiv').hide();
-        $('#creddiv').show();
-        $('#genrightdiv').hide();
-        validateGeneral();
-        validateCredential();
-        credentialRevalidation();
+        forpermission();
     });
 
     $('#prevgeneral').click(function(){
@@ -207,7 +295,7 @@ $(document).ready(function() {
     });
 
     $('#general').click(function(){
-        document.getElementById('permission').style.background = "#4E4E4E";
+        document.getElementById('permission').style.background = "#f2f2f2";
         document.getElementById('general').style.background = "#66cc66";
         document.getElementById('credgeneral').style.background = "#f2f2f2";
         $('#permdiv').hide();
@@ -279,6 +367,7 @@ $(document).ready(function() {
         document.getElementById("credgeneral").style.background = "#66cc66";
         $('#general').prop('disabled', false).css("cursor", "pointer");
         $('#permission').prop('disabled', false).css("cursor", "pointer");
+        $("#okgeneral").prop('disabled', true).css("cursor", "default");
     });
     
     $('.hidecancel').click(function(){
@@ -329,22 +418,20 @@ $(document).ready(function() {
         $('#drole').text(obj.perm.role);
         $('#ddept').text(obj.perm.dept);
     }
-
-    function buttonNextHandler(){
-        if (document.getElementById('nextgeneral').name == 'generalnext') {
+    
+    function nextButtonHandler() {
+        if(isValidateGeneral) {
             validateGeneral();
-            document.getElementById('nextgeneral').name='credentialnext';
-        } else if (document.getElementById('nextgeneral').name == 'credentialnext') {
-            $("#errorc1").hide();
+            $('#permdiv').hide();
+        }else if(isValidateCredential) {
+            document.getElementById('general').style.background = "#f2f2f2";
             validateCredential();
-            document.getElementById('nextgeneral').name='generalnext';
-        } else {
-            document.getElementById('nextgeneral').name='credentialnext';
+            //document.getElementById('credgeneral').style.background = "#66cc66";    
         }
     }
 
     $('#nextgeneral').click(function(){
-        buttonNextHandler();
+        nextButtonHandler();
     });
 
 });
