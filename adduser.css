@@ -3,14 +3,22 @@
         width: 100%;
         background-color: powderblue;
     }
-    .button {
-        color: black;
-        padding: 15px 32px;
+    .buttontop {
+        padding: 8px 25px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
         margin-top: 20px;
+        cursor: pointer;
+    }
+    .button{
+        padding: 10px 25px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-left:300px;
+        cursor: pointer;
     }
     .topdiv {
         height: 70px;
@@ -50,18 +58,38 @@
         text-decoration: none;
         font-size: 20px;
     }
-    .button {
-        color: black;
-        padding: 8px 25px;
+    .buttong {
+        padding: 15px 57px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
-        margin-top: 16px;
-        margin-right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .buttonc {
+        padding: 15px 47px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .buttonp {
+        padding: 15px 43px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .okcancel{
+        cursor: pointer;
+    }
+    .hidecancel{
+        cursor: pointer;
     }
     .credeninput{
-        margin-top: 16px;
+        margin-top: 5px;
     }
     .generalinput{
         margin-left: 15px;
@@ -87,10 +115,16 @@
         font-size: 16px;
         background-color: #fff0b3;  
     }
-    .errordiv{
-        height: 50px;
-        width: 200px;
-        margin-left:650px;
+    .passworderrorspan{
+        width: 400px;
+    }
+    .passwordinputspan{
+        width: 400px; 
+    }
+    .passworderrorcontainer{
+        height: auto;
+        width: 100px;
+        margin-left:550px;
         background-color: #fff0b3;  
     }
     .popupcontent{
@@ -107,4 +141,7 @@
     #statusbar{
         margin-left: 10%px;
         margin-top: 70px;
+    }
+    table, th, td {
+        border: 1px solid black;
     }
