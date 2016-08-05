@@ -441,5 +441,4 @@ $(document).ready(function() {
     $('#prevbutton').click(function(){
         prevButtonHandler();
     });
-
 });
