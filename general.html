@@ -11,43 +11,43 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 </head>
 <body>
-    <h2>Add User</h2>
-    <div style="text-align:right; border:1px solid black" class="topdiv" id="topdiv">
-        <button class="buttontop" id="prevgeneral" class="prevperm">Prev</button>
-        <button class="buttontop" id="prevpermission" class="prevperm">Prev</button>
-        <button class="buttontop" id="nextgeneral" name="generalnext">Next</button>
-        <button class="buttontop" id="okgeneral">OK</button>
-        <button class="buttontop" id="cancelgeneral">Cancel</button>
+    <div style=" border:1px solid black" class="topdiv" id="topdiv">
+        <label class="lableadduser">Add User</label>
+        <button class="buttontop" id="prevbutton" class="prevperm">Prev</button>
+        <button class="buttontop" id="nextbutton" name="generalnext">Next</button>
+        <button class="buttontop" id="okbutton">OK</button>
+        <button class="buttontop" id="cancelbutton">Cancel</button>
     </div>
     <div style="text-align:center; border:1px solid black" class="leftdiv" id="leftdiv">
         <div class="pdiv">
-            <button class="buttong" id="general">General</button>
+            <button class="general" id="generalbutton">General</button>
         </div>
         <div class="pdiv">
-            <button class="buttonc" id="credgeneral">Credential</button>
+            <button class="credential" id="credentialbutton">Credential</button>
         </div>
         <div class="pdiv">
-            <button class="buttonp" id="permission">Permission</button>
+            <button class="permission" id="permissionbutton">Permission</button>
         </div>  
     </div>
+    <div class="footer"></div>
         <div style="text-align:center; border:1px solid black" class="rightdiv" id="rightgendiv"><br/>
-            <div class="genrightdiv" id="genrightdiv">
+            <div class="genrightdiv" id="general">
                 <div class="popupcontent">Do you want to proceed.
                     <div id="statusbar">
                         <button style="padding: 6px 20px;" class="okcancel">Ok</button>
                         <button style="padding: 6px 20px; margin-Left: 30px;" class="hidecancel">Cancel</button>
                     </div>
                 </div>
-                <input style="padding: 8px 25px;" type="text" name="name" placeholder="Enter your name" id="gname" class="generalinput" />
-                <div id="error1"></div><br/>
+                <input style="padding: 8px 25px;" type="text" name="name" placeholder="Enter your name" id="gname" class="generalinput"  />
+                <div id="error1" class="inputerror"></div><br/><br/>
                 <input style="padding: 8px 25px;" type="text" name="fname" placeholder="Enter your father's name" id="fname" class="generalinput"/>
-                <div id="error2"></div><br/>
-                <input style="padding: 8px 25px;" type="text" name="dob" placeholder="Enter your dob" id="dob" class="generalinput"/>
-                <div id="error3"></div><br/>
+                <div id="error2" class="inputerror"></div><br/><br/>
+                <input style="padding: 8px 25px;" type="text" name="dob" placeholder="Enter your dob" id="dob" class="generalinput" />
+                <div id="error3" class="inputerror"></div><br/><br/>
                 <input style="padding: 8px 25px;" type="text" name="email" placeholder="email@gmail.com" id="email" class="generalinput" />
-                <div id="error4"></div>
+                <div id="error4" class="inputerror"></div>
             </div>
-            <div style="text-align:center;" class="genrightdiv" id="creddiv"><br/>
+            <div style="text-align:center;" class="genrightdiv" id="credential"><br/>
                 <div class="popupcontent">Do you want to proceed.
                     <div id="statusbar">
                         <button style="padding: 6px 20px;" class="okcancel">Ok</button>
@@ -56,10 +56,10 @@
                 </div>
                 <div>
                     <span class="passwordinputspan">
-                        <input style="padding: 8px 25px;" type="text" name="uname" placeholder="Username" id="userName" class="credeninput" />
-                        <div id="errorc1"></div><br/>
-                        <input style="padding: 8px 25px;" type="password" name="password" placeholder="password" id="password" class="credeninput"/><br/>
-                        <input style="padding: 8px 25px;" type="password" name="password" placeholder="re password" id="repassword" class="credeninput"/>
+                        <input style="padding: 8px 25px;" type="text" name="uname" placeholder="Please enter username" id="userName" class="credeninput" />
+                        <div id="errorc1" class="credentialinputerror"></div><br/>
+                        <input style="padding: 8px 25px;" type="password" name="password" placeholder="Please enter password" id="password" class="credeninput"/><br/>
+                        <input style="padding: 8px 25px;" type="password" name="password" placeholder="Please enter re password" id="repassword" class="credeninput"/>
                     </span>
                     <span class="passworderrorspan">
                         <div class="passworderrorcontainer" id="mainerror">
@@ -76,11 +76,11 @@
                 </div>
                 
             </div>
-            <div style="text-align:left;" class="genrightdiv" id="permdiv"><br/>
+            <div style="text-align:left;" class="genrightdiv" id="permission"><br/>
                 <div class="popupcontent">Do you want to proceed.
                     <div id="statusbar">
                         <button style="padding: 6px 20px;" class="okcancel">Ok</button>
-                        <button style="padding: 6px 20px; margin-Left: 30px;" class="hidecancel">Cancel</button>
+                        <button style="padding: 6px 20px; margin-Left: 30px;" class="hidecancelpermission">Cancel</button>
                     </div>
                 </div>
                 <label style="margin-left: 100px;">Roles:</label><br/>
